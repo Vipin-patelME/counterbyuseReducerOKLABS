@@ -19,6 +19,8 @@ const countReducer = (state, action)=>{
         ...state,
         count:state.count - action.payload
       }
+    default:
+        return state
   }
 }
 
