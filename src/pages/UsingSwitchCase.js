@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ADD, SUB } from '../action/actionConstants';
+import { ADD, RESET, SUB } from '../action/actionConstants';
 import '../App.css';
 
 const initialState = {
@@ -19,6 +19,11 @@ const countReducer = (state, action)=>{
         ...state,
         count:state.count - action.payload
       }
+    case RESET:
+        return{
+            ...state,
+            count:0
+        }
     default:
         return state
   }
@@ -40,12 +45,13 @@ function UsingSwitchCase() {
           <button onClick={()=>{ dispatch({type:"ADD", payload:3})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>+3</button>
           <button onClick={()=>{ dispatch({type:"ADD", payload:4})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>+4</button>
           <button onClick={()=>{ dispatch({type:"ADD", payload:5})}} type='button'style={{fontSize:"20px", fontWeight:"bold", marginRight:"20px"}}>+5</button>
+          <button onClick={()=>{ dispatch({type:"RESET"})}} type='button' style={{fontSize:"20px", fontWeight:"bold", marginRight:"20px", backgroundColor:"greenyellow", padding:"5px", borderRadius:"8px"}} >Reset</button>
           <button onClick={()=>{ dispatch({type:"SUB", payload:2})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>-2</button>
           <button onClick={()=>{ dispatch({type:"SUB", payload:3})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>-3</button>
           <button onClick={()=>{ dispatch({type:"SUB", payload:4})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>-4</button>
           <button onClick={()=>{ dispatch({type:"SUB", payload:5})}} type='button'style={{fontSize:"20px", fontWeight:"bold"}}>-5</button>
         </div>
-        <button onClick={()=>{navigate("/if-else-useReducer")}} style={{margin:"10px", padding:"10px", fontSize:"20px", borderRadius:"8px", backgroundColor:"skyblue"}} type='button'>click me to try useReducer with if else statement</button>
+        <button onClick={()=>{navigate("/if-else-useReducer")}} style={{marginTop:"40px", padding:"10px", fontSize:"20px", borderRadius:"8px", backgroundColor:"skyblue"}} type='button'>click me to try useReducer with if else statement</button>
       </header>
     </div>
   );
